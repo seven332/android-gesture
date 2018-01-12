@@ -235,11 +235,11 @@ public class RotationGestureDetector {
     /**
      * Responds to rotating events for a gesture in progress.
      *
-     * @param angle the rotating angle, clockwise
      * @param x x of the anchor point
      * @param y y of the anchor point
+     * @param angle the rotating angle, clockwise, in degree
      */
-    void onRotate(float angle, float x, float y);
+    void onRotate(float x, float y, float angle);
 
     /**
      * Responds to the beginning of a rotating gesture.

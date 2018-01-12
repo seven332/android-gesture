@@ -126,17 +126,19 @@ public class GestureRecognizer {
      * @see GestureRecognizer#setScaleEnabled(boolean)
      * @see GestureRecognizer#isScaleEnabled()
      */
-    void onScale(float focusX, float focusY, float scale);
+    void onScale(float x, float y, float scale);
 
     /**
      * Notified when a rotate occurs.
      * Call {@link GestureRecognizer#setRotateEnabled(boolean)} to enable it.
      * By default rotate gesture is disabled.
      *
+     * @param angle the rotating angle, clockwise, in degree
+     *
      * @see GestureRecognizer#setRotateEnabled(boolean)
      * @see GestureRecognizer#isRotateEnabled()
      */
-    void onRotate(float angle, float x, float y);
+    void onRotate(float x, float y, float angle);
   }
 
   /**
@@ -442,7 +444,7 @@ public class GestureRecognizer {
       }
 
       if (isScaling) {
-        listener.onScale(detector.getScaleFactor(), detector.getFocusX(), detector.getFocusY());
+        listener.onScale(detector.getFocusX(), detector.getFocusY(), detector.getScaleFactor());
       }
 
       return true;
@@ -470,7 +472,7 @@ public class GestureRecognizer {
 
 
     @Override
-    public void onRotate(float angle, float x, float y) {
+    public void onRotate(float x, float y, float angle) {
       if (!isRotateEnabled) {
         isRotating = false;
         return;
@@ -489,7 +491,7 @@ public class GestureRecognizer {
       }
 
       if (isRotating) {
-        listener.onRotate(angle, x, y);
+        listener.onRotate(x, y, angle);
       }
     }
 
